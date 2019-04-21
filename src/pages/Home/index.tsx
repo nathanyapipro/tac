@@ -12,7 +12,6 @@ import Autocomplete, {
 import Field from "../../components/Field";
 import { actions } from "../../states/global/actions";
 import { $antibioticOptions } from "../../states/global/selectors";
-import { valueTypeToValue } from "../../helpers/autocomplete";
 
 const useStyles = makeStyles((theme: Theme) => ({
   container: {
@@ -57,7 +56,8 @@ function HomeBase(props: Props) {
     allergenicAntibioticId,
     prescribedAntibioticId,
     setAllergenicAntibioticId,
-    setPrescribedAntibioticId
+    setPrescribedAntibioticId,
+    push
   } = props;
   const classes = useStyles();
 
@@ -73,6 +73,10 @@ function HomeBase(props: Props) {
     _: ActionMeta
   ) => {
     setPrescribedAntibioticId(valueType);
+  };
+
+  const handleSubmit = () => {
+    push("/result");
   };
 
   return (
@@ -111,6 +115,7 @@ function HomeBase(props: Props) {
         <Button
           variant="contained"
           color="primary"
+          onClick={handleSubmit}
           disabled={
             prescribedAntibioticId === undefined ||
             allergenicAntibioticId === undefined

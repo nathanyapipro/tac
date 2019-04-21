@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/styles";
 import {
   Theme,
   Card,
+  Paper,
   Table,
   TableBody,
   TableCell,
@@ -21,14 +22,22 @@ const useStyles = makeStyles((theme: Theme) => ({
   container: {
     display: "flex",
     flexDirection: "column",
-    marginTop: theme.spacing.unit * 2
+    marginTop: theme.spacing.unit * 2,
+    padding: theme.spacing.unit * 2
+  },
+  content: {
+    display: "flex",
+    flexDirection: "column",
+    marginTop: theme.spacing.unit,
+    border: `1px solid ${theme.palette.divider}`,
+    borderBottom: "unset"
   },
   table: {},
   tableHead: {
     backgroundColor: "#fce4ec"
   },
   tableHeadRow: {
-    height: theme.spacing.unit * 5
+    height: theme.spacing.unit * 4
   },
   namesCell: {
     display: "flex",
@@ -59,44 +68,49 @@ function RelatedAntibioticsTableBase(props: Props) {
   const classes = useStyles();
   return (
     <Card className={classes.container}>
-      <Table className={classes.table}>
-        <TableHead className={classes.tableHead}>
-          <TableRow className={classes.tableHeadRow}>
-            <TableCell padding="dense" colSpan={2}>
-              <Typography color="textPrimary">Noms</Typography>
-            </TableCell>
-            <TableCell padding="dense">
-              <Typography color="textPrimary">Classe</Typography>
-            </TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data.map(row => {
-            return (
-              <TableRow key={row.id}>
-                <TableCell padding="dense" colSpan={2}>
-                  <div className={classes.namesCell}>
-                    <Typography color="textPrimary">{row.name}</Typography>
-                    <div className={classes.commercialNames}>
-                      {row.commercialNames.map((commercialName: string) => (
-                        <Typography
-                          className={classes.commercialName}
-                          color="textSecondary"
-                        >
-                          {commercialName}
-                        </Typography>
-                      ))}
+      <Typography variant="body1" color="textPrimary">
+        List d'antibiotique a éviter
+      </Typography>
+      <Paper elevation={0} className={classes.content}>
+        <Table className={classes.table}>
+          <TableHead className={classes.tableHead}>
+            <TableRow className={classes.tableHeadRow}>
+              <TableCell padding="dense" colSpan={2}>
+                <Typography color="textPrimary">Noms</Typography>
+              </TableCell>
+              <TableCell padding="dense">
+                <Typography color="textPrimary">Classe</Typography>
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {data.map(row => {
+              return (
+                <TableRow key={row.id}>
+                  <TableCell padding="dense" colSpan={2}>
+                    <div className={classes.namesCell}>
+                      <Typography color="textPrimary">{row.name}</Typography>
+                      <div className={classes.commercialNames}>
+                        {row.commercialNames.map((commercialName: string) => (
+                          <Typography
+                            className={classes.commercialName}
+                            color="textSecondary"
+                          >
+                            {commercialName}
+                          </Typography>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                </TableCell>
-                <TableCell padding="dense">
-                  <Typography color="textPrimary">{row.group}</Typography>
-                </TableCell>
-              </TableRow>
-            );
-          })}
-        </TableBody>
-      </Table>
+                  </TableCell>
+                  <TableCell padding="dense">
+                    <Typography color="textPrimary">{row.group}</Typography>
+                  </TableCell>
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </Paper>
     </Card>
   );
 }

@@ -12,3 +12,7 @@ export function getOption(antibiotic: Antibiotic): OptionType {
       }`
   };
 }
+
+export function isPenicilineGroup(groupId: string): boolean {
+  return groupId === "6" || groupId === "7" || groupId === "8";
+}

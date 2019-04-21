@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: "flex",
     justifyItems: "center",
     color: theme.palette.primary.contrastText,
-    boxShadow: theme.shadows[3]
+    boxShadow: theme.shadows[2]
   },
   toolbar: {
     display: "flex",
@@ -23,10 +23,6 @@ const useStyles = makeStyles((theme: Theme) => ({
   icon: {
     fontSize: theme.spacing.unit * 4,
     marginRight: theme.spacing.unit * 2
-  },
-  title: {
-    color: "inherit",
-    textAlign: "center"
   }
 }));
 

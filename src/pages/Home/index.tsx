@@ -37,14 +37,14 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 interface ReduxDispatchProps {
   push: typeof push;
-  setAllergenicAntibioticId: (params: ValueType) => void;
-  setPrescribedAntibioticId: (params: ValueType) => void;
+  setAllergenicAntibiotic: (params: ValueType) => void;
+  setPrescribedAntibiotic: (params: ValueType) => void;
 }
 
 interface ReduxStateProps {
   antibioticOptions: OptionsType;
-  allergenicAntibioticId: ValueType;
-  prescribedAntibioticId: ValueType;
+  allergenicAntibioticValueType: ValueType;
+  prescribedAntibioticValueType: ValueType;
 }
 
 type OwnProps = {};
@@ -53,30 +53,30 @@ type Props = OwnProps & ReduxStateProps & ReduxDispatchProps;
 function HomeBase(props: Props) {
   const {
     antibioticOptions,
-    allergenicAntibioticId,
-    prescribedAntibioticId,
-    setAllergenicAntibioticId,
-    setPrescribedAntibioticId,
+    allergenicAntibioticValueType,
+    prescribedAntibioticValueType,
+    setAllergenicAntibiotic,
+    setPrescribedAntibiotic,
     push
   } = props;
   const classes = useStyles();
 
-  const handleAllergicAntiobicIdChange = (
+  const handleAllergicAntiobicChange = (
     valueType: ValueType,
     _: ActionMeta
   ) => {
-    setAllergenicAntibioticId(valueType);
+    setAllergenicAntibiotic(valueType);
   };
 
   const handlePrescribedAntibioticChange = (
     valueType: ValueType,
     _: ActionMeta
   ) => {
-    setPrescribedAntibioticId(valueType);
+    setPrescribedAntibiotic(valueType);
   };
 
   const handleSubmit = () => {
-    push("/result");
+    push("/results");
   };
 
   return (
@@ -88,9 +88,9 @@ function HomeBase(props: Props) {
             <Autocomplete
               isClearable
               options={antibioticOptions}
-              onChange={handleAllergicAntiobicIdChange}
+              onChange={handleAllergicAntiobicChange}
               placeholder=""
-              value={allergenicAntibioticId}
+              value={allergenicAntibioticValueType}
               isMulti={false}
             />
           }
@@ -103,7 +103,7 @@ function HomeBase(props: Props) {
               options={antibioticOptions}
               onChange={handlePrescribedAntibioticChange}
               placeholder=""
-              value={prescribedAntibioticId}
+              value={prescribedAntibioticValueType}
               isMulti={false}
             />
           }
@@ -117,8 +117,8 @@ function HomeBase(props: Props) {
           color="primary"
           onClick={handleSubmit}
           disabled={
-            prescribedAntibioticId === undefined ||
-            allergenicAntibioticId === undefined
+            prescribedAntibioticValueType === undefined ||
+            allergenicAntibioticValueType === undefined
           }
           className={classes.button}
         >
@@ -132,10 +132,12 @@ function HomeBase(props: Props) {
 }
 
 const mapStateToProps = (state: StoreState): ReduxStateProps => {
-  const { allergenicAntibioticId, prescribedAntibioticId } = state.global;
+  const { allergenicAntibiotic, prescribedAntibiotic } = state.global;
   return {
-    allergenicAntibioticId,
-    prescribedAntibioticId,
+    allergenicAntibioticValueType:
+      allergenicAntibiotic && allergenicAntibiotic.valueType,
+    prescribedAntibioticValueType:
+      prescribedAntibiotic && prescribedAntibiotic.valueType,
     antibioticOptions: $antibioticOptions(state)
   };
 };
@@ -144,8 +146,8 @@ const Home = connect(
   mapStateToProps,
   {
     push,
-    setAllergenicAntibioticId: actions.setAllergenicAntibioticId,
-    setPrescribedAntibioticId: actions.setPrescribedAntibioticId
+    setAllergenicAntibiotic: actions.setAllergenicAntibiotic,
+    setPrescribedAntibiotic: actions.setPrescribedAntibiotic
   }
 )(HomeBase);
 

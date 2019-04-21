@@ -32,7 +32,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     border: `1px solid ${theme.palette.divider}`,
     borderBottom: "unset"
   },
-  table: {},
+  table: {
+    tableLayout: "fixed"
+  },
   tableHead: {
     backgroundColor: "#fce4ec"
   },
@@ -78,7 +80,7 @@ function RelatedAntibioticsTableBase(props: Props) {
               <TableCell padding="dense" colSpan={2}>
                 <Typography color="textPrimary">Noms</Typography>
               </TableCell>
-              <TableCell padding="dense">
+              <TableCell padding="dense" colSpan={3}>
                 <Typography color="textPrimary">Classe</Typography>
               </TableCell>
             </TableRow>
@@ -102,8 +104,10 @@ function RelatedAntibioticsTableBase(props: Props) {
                       </div>
                     </div>
                   </TableCell>
-                  <TableCell padding="dense">
-                    <Typography color="textPrimary">{row.group}</Typography>
+                  <TableCell padding="dense" colSpan={3}>
+                    <Typography color="textPrimary" noWrap>
+                      {row.group}
+                    </Typography>
                   </TableCell>
                 </TableRow>
               );

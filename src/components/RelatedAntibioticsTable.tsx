@@ -41,6 +41,9 @@ const useStyles = makeStyles((theme: Theme) => ({
   tableHeadRow: {
     height: theme.spacing.unit * 4
   },
+  bold: {
+    fontWeight: 700
+  },
   namesCell: {
     display: "flex",
     flexDirection: "column",
@@ -71,17 +74,21 @@ function RelatedAntibioticsTableBase(props: Props) {
   return (
     <Card className={classes.container}>
       <Typography variant="body1" color="textPrimary">
-        List d'antibiotique a éviter
+        Liste d'antibiotiques à éviter
       </Typography>
       <Paper elevation={0} className={classes.content}>
         <Table className={classes.table}>
           <TableHead className={classes.tableHead}>
             <TableRow className={classes.tableHeadRow}>
               <TableCell padding="dense" colSpan={2}>
-                <Typography color="textPrimary">Noms</Typography>
+                <Typography color="textPrimary" className={classes.bold}>
+                  Noms
+                </Typography>
               </TableCell>
               <TableCell padding="dense" colSpan={3}>
-                <Typography color="textPrimary">Classe</Typography>
+                <Typography color="textPrimary" className={classes.bold}>
+                  Classes
+                </Typography>
               </TableCell>
             </TableRow>
           </TableHead>

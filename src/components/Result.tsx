@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     flexDirection: "column"
   },
   resultText: {
-    fontWeight: 500
+    fontWeight: 700
   }
 }));
 

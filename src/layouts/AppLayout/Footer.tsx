@@ -25,7 +25,7 @@ function FooterBase(_: Props) {
         Inspiré par Véronique Stark
       </Typography>
       <Typography color="textSecondary" variant="caption">
-        Developpé par Nathan Yapi
+        Développé par Nathan Yapi
       </Typography>
     </div>
   );

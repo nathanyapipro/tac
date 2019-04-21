@@ -12,6 +12,8 @@ import {
   routerMiddleware,
   CallHistoryMethodAction
 } from "connected-react-router";
+import { persistReducer, persistStore, Persistor } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 import { History, createBrowserHistory } from "history";
 import { ActionType } from "typesafe-actions";
 import { global, GlobalState } from "./global/reducer";
@@ -42,6 +44,7 @@ export interface StoreState {
 interface InitStore {
   store: Store<StoreState>;
   history: History;
+  persistor: Persistor;
 }
 
 const publicURL = process.env.PUBLIC_URL;
@@ -61,19 +64,33 @@ export async function initStore(): Promise<InitStore> {
     enhancers.push(window.__REDUX_DEVTOOLS_EXTENSION__());
   }
 
+  const rootReducer = combineReducers({
+    router: connectRouter(history),
+    global
+  });
+
   const store = createStore(
-    combineReducers({
-      router: connectRouter(history),
-      global
-    }),
+    persistReducer(
+      {
+        key: "tac-antibio",
+        storage,
+        whitelist: ["global"]
+      },
+      rootReducer
+    ),
+
     compose(
       applyMiddleware(...middlewares),
       ...enhancers
     )
   );
 
+  const persistor = persistStore(store);
+  await persistor.flush();
+
   return {
     store,
-    history
+    history,
+    persistor
   };
 }

@@ -10,6 +10,7 @@ import { $result, Result as ResultType } from "../../states/global/selectors";
 import Result from "../../components/Result";
 import TestInfo from "../../components/TestInfo";
 import RelatedAntibioticsTable from "../../components/RelatedAntibioticsTable";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
 const useStyles = makeStyles((theme: Theme) => ({
   container: {
@@ -17,14 +18,18 @@ const useStyles = makeStyles((theme: Theme) => ({
     flexDirection: "row",
     flex: "0 0 auto",
     justifyContent: "center",
-    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 2}px`
+    margin: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 2}px`
   },
   content: {
     display: "flex",
     flexDirection: "column",
-    flex: "1 1 auto",
-    maxWidth: theme.spacing.unit * 50,
+    flex: "0 1 auto",
+    width: theme.spacing.unit * 50,
+    maxWidth: `calc(100vw - ${theme.spacing.unit * 4}px)`,
     overflow: "visible"
+  },
+  icon: {
+    marginRight: theme.spacing.unit * 2
   },
   button: {
     marginTop: theme.spacing.unit * 2
@@ -74,6 +79,7 @@ function ResultsBase(props: Props) {
           onClick={handleBack}
           className={classes.button}
         >
+          <ArrowBackIcon className={classes.icon} color="inherit" />
           Effectuer un autre Test
         </Button>
         <RelatedAntibioticsTable />

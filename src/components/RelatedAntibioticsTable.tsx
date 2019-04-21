@@ -28,7 +28,20 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundColor: "#fce4ec"
   },
   tableHeadRow: {
-    height: theme.spacing.unit * 4
+    height: theme.spacing.unit * 5
+  },
+  namesCell: {
+    display: "flex",
+    flexDirection: "column",
+    flex: "1 1 auto"
+  },
+  commercialNames: {
+    display: "flex",
+    flexDirection: "row",
+    flex: "1 1 auto"
+  },
+  commercialName: {
+    paddingRight: theme.spacing.unit
   }
 }));
 
@@ -62,7 +75,19 @@ function RelatedAntibioticsTableBase(props: Props) {
             return (
               <TableRow key={row.id}>
                 <TableCell padding="dense" colSpan={2}>
-                  <Typography color="textPrimary">{row.name}</Typography>
+                  <div className={classes.namesCell}>
+                    <Typography color="textPrimary">{row.name}</Typography>
+                    <div className={classes.commercialNames}>
+                      {row.commercialNames.map((commercialName: string) => (
+                        <Typography
+                          className={classes.commercialName}
+                          color="textSecondary"
+                        >
+                          {commercialName}
+                        </Typography>
+                      ))}
+                    </div>
+                  </div>
                 </TableCell>
                 <TableCell padding="dense">
                   <Typography color="textPrimary">{row.group}</Typography>

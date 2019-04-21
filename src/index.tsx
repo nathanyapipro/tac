@@ -7,12 +7,12 @@ import * as serviceWorker from "./serviceWorker";
 install();
 
 (async function() {
-  const { store, history } = await initStore();
+  const { store, history, persistor } = await initStore();
   const appModule = await import("./App");
   const App = appModule.default;
 
   render(
-    <App store={store} history={history} />,
+    <App store={store} history={history} persistor={persistor} />,
     document.getElementById("root")
   );
 })();

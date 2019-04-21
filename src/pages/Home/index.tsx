@@ -20,14 +20,15 @@ const useStyles = makeStyles((theme: Theme) => ({
     flex: "1 0 auto",
     alignItems: "center",
     justifyContent: "center",
-    padding: `${0}px ${theme.spacing.unit * 2}px`
+    margin: `${0}px ${theme.spacing.unit * 2}px`
   },
   content: {
     display: "flex",
     flexDirection: "column",
-    flex: "1 1 auto",
+    flex: "0 1 auto",
     padding: theme.spacing.unit * 2,
-    maxWidth: theme.spacing.unit * 50,
+    width: theme.spacing.unit * 50,
+    maxWidth: `calc(100vw - ${theme.spacing.unit * 4}px)`,
     overflow: "visible"
   },
   button: {

@@ -24,7 +24,7 @@ const theme = createMuiTheme({
     fontSize: 14
   },
   shape: {
-    borderRadius: spacing.unit / 2
+    borderRadius: 3
   },
   overrides: {
     MuiButton: {

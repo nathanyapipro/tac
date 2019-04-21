@@ -4,35 +4,35 @@ import {
   createMuiTheme,
   CssBaseline
 } from "@material-ui/core";
+import spacing from "@material-ui/core/styles/spacing";
+import grey from "@material-ui/core/colors/grey";
 import { ThemeProvider } from "@material-ui/styles";
 
 const theme = createMuiTheme({
-  // palette: {
-  //   primary: {
-  //     light: Colors.purple[50],
-  //     main: Colors.purple[500],
-  //     dark: Colors.purple[700]
-  //   },
-  //   background: {
-  //     default: Colors.grey[100]
-  //   }
-  // },
-  // mixins: {
-  //   toolbar: {
-  //     minHeight: defaultTheme.spacing.unit * 8
-  //   }
-  // },
-  // overrides: {
-  //   MuiAppBar: {
-  //     root: {
-  //       boxShadow: defaultTheme.shadows[1]
-  //     },
-  //     colorDefault: {
-  //       backgroundColor: Colors.darkGrey[900],
-  //       color: "white"
-  //     }
-  //   }
-  // }
+  palette: {
+    primary: {
+      dark: "#b22c5a",
+      main: "#ff4081",
+      light: "#ff669a"
+    },
+    background: {
+      default: grey[100]
+    }
+  },
+  typography: {
+    useNextVariants: true,
+    fontSize: 14
+  },
+  shape: {
+    borderRadius: spacing.unit / 2
+  },
+  overrides: {
+    MuiButton: {
+      root: {
+        textTransform: "unset"
+      }
+    }
+  }
 });
 
 interface WrappedComponentProps {}

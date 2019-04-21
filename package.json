@@ -15,6 +15,7 @@
     "@types/react-redux": "^7.0.8",
     "@types/react-router": "^4.4.5",
     "@types/react-router-dom": "^4.3.2",
+    "@types/react-select": "^2.0.17",
     "classnames": "^2.2.6",
     "commitizen": "^3.1.1",
     "connected-react-router": "^6.4.0",
@@ -29,7 +30,9 @@
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
+    "react-select": "^2.4.3",
     "redux": "^4.0.1",
+    "reselect": "^4.0.0",
     "tslint-config-prettier": "^1.18.0",
     "tslint-react": "^4.0.0",
     "typesafe-actions": "^4.0.0",
@@ -39,10 +42,17 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "precommit": "pretty-quick --staged",
+    "cz": "npm run precommit && git cz"
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
   },
   "browserslist": [
     ">0.2%",

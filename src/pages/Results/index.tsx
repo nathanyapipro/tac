@@ -9,6 +9,7 @@ import { actions } from "../../states/global/actions";
 import { $result, Result as ResultType } from "../../states/global/selectors";
 import Result from "../../components/Result";
 import TestInfo from "../../components/TestInfo";
+import RelatedAntibioticsTable from "../../components/RelatedAntibioticsTable";
 
 const useStyles = makeStyles((theme: Theme) => ({
   container: {
@@ -44,14 +45,23 @@ type OwnProps = {};
 type Props = OwnProps & ReduxStateProps & ReduxDispatchProps;
 
 function ResultsBase(props: Props) {
-  const { result, push } = props;
+  const {
+    result,
+    push,
+    setAllergenicAntibiotic,
+    setPrescribedAntibiotic
+  } = props;
   const classes = useStyles();
 
   if (result === ResultType.UNKNOWN) {
     push("/");
   }
 
-  const handleBack = () => push("/");
+  const handleBack = () => {
+    setAllergenicAntibiotic(undefined);
+    setPrescribedAntibiotic(undefined);
+    push("/");
+  };
 
   return (
     <div className={classes.container}>
@@ -66,6 +76,7 @@ function ResultsBase(props: Props) {
         >
           Effectuer un autre Test
         </Button>
+        <RelatedAntibioticsTable />
       </div>
     </div>
   );
@@ -81,8 +92,8 @@ const Results = connect(
   mapStateToProps,
   {
     push,
-    setAllergenicAntibioticId: actions.setAllergenicAntibiotic,
-    setPrescribedAntibioticId: actions.setPrescribedAntibiotic
+    setAllergenicAntibiotic: actions.setAllergenicAntibiotic,
+    setPrescribedAntibiotic: actions.setPrescribedAntibiotic
   }
 )(ResultsBase);
 

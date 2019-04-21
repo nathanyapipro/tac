@@ -25,7 +25,7 @@ export interface AntibioticData {
 }
 
 export interface GlobalState {
-  readonly groupes: ById<Group>;
+  readonly groups: ById<Group>;
   readonly antibiotics: ById<Antibiotic>;
   readonly allergenicAntibiotic?: AntibioticData;
   readonly prescribedAntibiotic?: AntibioticData;
@@ -34,7 +34,7 @@ export interface GlobalState {
 const INITIAL_STATE = {
   allergenicAntibiotic: undefined,
   prescribedAntibiotic: undefined,
-  groupes: {
+  groups: {
     "1": {
       id: "1",
       name: "Aminosides"
@@ -452,7 +452,7 @@ export function global(
         const selected =
           action.payload instanceof Array ? action.payload[0] : action.payload;
         const antibiotic = state.antibiotics[selected.value];
-        const group = state.groupes[antibiotic.group];
+        const group = state.groups[antibiotic.group];
         return {
           ...state,
           allergenicAntibiotic: {
@@ -473,7 +473,7 @@ export function global(
         const selected =
           action.payload instanceof Array ? action.payload[0] : action.payload;
         const antibiotic = state.antibiotics[selected.value];
-        const group = state.groupes[antibiotic.group];
+        const group = state.groups[antibiotic.group];
         return {
           ...state,
           prescribedAntibiotic: {

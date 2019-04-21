@@ -123,7 +123,7 @@ function HomeBase(props: Props) {
           className={classes.button}
         >
           <Typography variant="body1" color="inherit">
-            Effectuer un Test
+            Effectuer le Test
           </Typography>
         </Button>
       </Card>
